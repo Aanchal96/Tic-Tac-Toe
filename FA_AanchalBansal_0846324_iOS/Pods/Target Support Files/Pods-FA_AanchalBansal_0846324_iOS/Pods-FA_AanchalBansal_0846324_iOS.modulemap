@@ -1,0 +1,6 @@
+framework module Pods_FA_AanchalBansal_0846324_iOS {
+  umbrella header "Pods-FA_AanchalBansal_0846324_iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
