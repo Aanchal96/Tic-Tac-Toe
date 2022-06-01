@@ -12,7 +12,6 @@
 		87B060AD2846B2CD002B5F2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87B060AB2846B2CD002B5F2C /* Main.storyboard */; };
 		87B060AF2846B2CF002B5F2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87B060AE2846B2CF002B5F2C /* Assets.xcassets */; };
 		87B060B22846B2CF002B5F2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87B060B02846B2CF002B5F2C /* LaunchScreen.storyboard */; };
-		87B060BD2846C503002B5F2C /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87B060BC2846C503002B5F2C /* Game.storyboard */; };
 		87B060BF2846C50E002B5F2C /* GameBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B060BE2846C50E002B5F2C /* GameBoardViewController.swift */; };
 		87B060C12846C540002B5F2C /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B060C02846C540002B5F2C /* GameModel.swift */; };
 		A48C3E4B2EBA6843613F87C4 /* Pods_FA_AanchalBansal_0846324_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4F07E915C245C3352F7287 /* Pods_FA_AanchalBansal_0846324_iOS.framework */; };
@@ -28,7 +27,6 @@
 		87B060AE2846B2CF002B5F2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87B060B12846B2CF002B5F2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87B060B32846B2CF002B5F2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		87B060BC2846C503002B5F2C /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		87B060BE2846C50E002B5F2C /* GameBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBoardViewController.swift; sourceTree = "<group>"; };
 		87B060C02846C540002B5F2C /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		89ADC44B5A339541F346D86B /* Pods-FA_AanchalBansal_0846324_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FA_AanchalBansal_0846324_iOS.release.xcconfig"; path = "Target Support Files/Pods-FA_AanchalBansal_0846324_iOS/Pods-FA_AanchalBansal_0846324_iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 		87B060BA2846B9F2002B5F2C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				87B060BC2846C503002B5F2C /* Game.storyboard */,
 				87B060B02846B2CF002B5F2C /* LaunchScreen.storyboard */,
 				87B060AB2846B2CD002B5F2C /* Main.storyboard */,
 			);
@@ -181,7 +178,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87B060BD2846C503002B5F2C /* Game.storyboard in Resources */,
 				87B060B22846B2CF002B5F2C /* LaunchScreen.storyboard in Resources */,
 				87B060AF2846B2CF002B5F2C /* Assets.xcassets in Resources */,
 				87B060AD2846B2CD002B5F2C /* Main.storyboard in Resources */,
@@ -396,7 +392,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Tic Tac Toe";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Game;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -427,7 +423,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Tic Tac Toe";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Game;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

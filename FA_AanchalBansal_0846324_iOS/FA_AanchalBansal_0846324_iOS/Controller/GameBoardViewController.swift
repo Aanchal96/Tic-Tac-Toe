@@ -1,6 +1,6 @@
 //
 //  GameBoardViewController.swift
-//  
+//
 
 
 import UIKit
@@ -30,19 +30,24 @@ class GameBoardViewController: UIViewController {
         checkIfGameExistOrResetGame()
         
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willTerminateNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appTerminated), name: UIApplication.willTerminateNotification, object: nil)
     }
     override func becomeFirstResponder() -> Bool {
         return true
     }
     
+    override func viewDidLayoutSubviews() {
+        btnCollectionCell.forEach({$0.layer.borderColor = UIColor.black.cgColor})
+        btnCollectionCell.forEach({$0.layer.borderWidth = 1})
+    }
+    
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             if let addedVal = lastAddedValue {
-                print("shake")
                 ticTacBoard[addedVal.index].value = nil
                 btnCollectionCell[addedVal.index].setTitle("", for: .normal)
                 lastAddedValue = nil
+                isCurrentTurnA.toggle()
                 setBoardData()
             }
         }
@@ -50,7 +55,6 @@ class GameBoardViewController: UIViewController {
     
     // MARK: Button Actions
     @IBAction func btnActionCollectionCell(_ sender: UIButton) {
-        
         if let _ = ticTacBoard[sender.tag - 1].value {
             return
         } else {
@@ -66,8 +70,8 @@ class GameBoardViewController: UIViewController {
             lastAddedValue = ticTacBoard[sender.tag - 1]
         }
         setBoardData()
+        checkResult()
     }
-    
 }
 
 extension GameBoardViewController {
@@ -119,17 +123,62 @@ extension GameBoardViewController {
         let p8 = ticTacBoard[7].value?.rawValue ?? ""
         let p9 = ticTacBoard[8].value?.rawValue ?? ""
         
-        if (p1 && p2 && p3) == "X" || (p4 && p5 && p6) == "X" || (p7 && p8 && p9) == "X" || (p1 && p4 && p7) == "X" || (p2 && p5 && p8) == "X" || (p3 && p6 && p9) == "X" || (p1 && p5 && p9) == "X" || (p3 && p5 && p7) == "X" {
+        let isFirstRowX = p1 == "X" && p2 == "X" && p3 == "X"
+        let isSecondRowX = p4 == "X" && p5 == "X" && p6 == "X"
+        let isThirdRowX = p7 == "X" && p8 == "X" && p9 == "X"
+        
+        let isFirstColX = p1 == "X" && p4 == "X" && p7 == "X"
+        let isSecondColX = p2 == "X" && p5 == "X" && p8 == "X"
+        let isThirdColX = p3 == "X" && p6 == "X" && p9 == "X"
+        
+        let isFirstDiagX = p1 == "X" && p5 == "X" && p9 == "X"
+        let isSecondDiagX = p3 == "X" && p5 == "X" && p7 == "X"
+        
+        let isFirstRowY = p1 == "0" && p2 == "0" && p3 == "0"
+        let isSecondRowY = p4 == "0" && p5 == "0" && p6 == "0"
+        let isThirdRowY = p7 == "0" && p8 == "0" && p9 == "0"
+        
+        let isFirstColY = p1 == "0" && p4 == "0" && p7 == "0"
+        let isSecondColY = p2 == "0" && p5 == "0" && p8 == "0"
+        let isThirdColY = p3 == "0" && p6 == "0" && p9 == "0"
+        
+        let isFirstDiagY = p1 == "0" && p5 == "0" && p9 == "0"
+        let isSecondDiagY = p3 == "0" && p5 == "0" && p7 == "0"
+        
+        
+        if isFirstRowX ||
+            isSecondRowX ||
+            isThirdRowX ||
+            isFirstColX ||
+            isSecondColX ||
+            isThirdColX ||
+            isFirstDiagX ||
+            isSecondDiagX {
             showAlert(msg: "A won!!")
             winCountA = winCountA + 1
             resetGame()
             
-        } else if (p1 && p2 && p3) == "0" || (p4 && p5 && p6) == "0" || (p7 && p8 && p9) == "0" || (p1 && p4 && p7) == "0" || (p2 && p5 && p8) == "0" || (p3 && p6 && p9) == "0" || (p1 && p5 && p9) == "0" || (p3 && p5 && p7) == "0"{
+        } else if  isFirstRowY ||
+                    isSecondRowY ||
+                    isThirdRowY ||
+                    isFirstColY ||
+                    isSecondColY ||
+                    isThirdColY ||
+                    isFirstDiagY ||
+                    isSecondDiagY {
             showAlert(msg: "B won!!")
             winCountB = winCountB + 1
             resetGame()
             
-        } else if (p1 && p2 && p3 && p3 && p3 && p3 && p3 && p3 && p3) != ""{
+        } else if p1 != "" &&
+                    p2 != "" &&
+                    p3 != "" &&
+                    p4 != "" &&
+                    p5 != "" &&
+                    p6 != "" &&
+                    p7 != "" &&
+                    p8 != "" &&
+                    p9 != "" {
             showAlert(msg: "It's a tie", actionTitle: "Oops")
         } else {
             print("continued..")
@@ -138,7 +187,6 @@ extension GameBoardViewController {
     
     @objc func handleSwipe(_ sender:UISwipeGestureRecognizer){
         resetGame()
-        print("swipe")
     }
     
     @objc func appTerminated(){
@@ -153,8 +201,9 @@ extension GameBoardViewController {
     func showAlert(msg: String , actionTitle: String = "Wohooo!") {
         let alert = UIAlertController(title: actionTitle, message: msg,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Start New Game", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Start New Game", style: .default, handler: { [self] _ in
             alert.dismiss(animated: true)
+            self.resetGame()
         }));
         self.present(alert, animated: true, completion: nil)
     }
